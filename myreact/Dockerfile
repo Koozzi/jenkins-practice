@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --no-optional
+RUN npm i -f
 
 CMD ["npm", "start"]
 
