@@ -1,0 +1,15 @@
+node {
+    stage('SCM Checkout'){
+        git(branch: 'main', credentialsId : 'koozzi-github', url : 'https://github.com/Koozzi/jenkins-practice')
+    } 
+
+    stage('Docker build image'){
+        sh '''cd myreact
+        docker build -t koozzi666/myreact .'''
+    }
+
+    stage('Docker run container'){
+        sh '''docker rm -f `docker ps -aq` || true
+        docker run -d -p 3000:3000 koozzi666/myreact'''
+    }
+}
